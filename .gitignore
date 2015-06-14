@@ -1,0 +1,7 @@
+.DS_Store
+*.*.html
+.classpath
+.project
+.settings
+bin/
+build/
