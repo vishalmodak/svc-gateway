@@ -37,8 +37,8 @@ public class HotelGatewayService {
     @Autowired
     private HotelRatingClient hotelRatingClient;
     
-    @Autowired
-    private HotelAvailabilityClient hotelAvailabilityClient;
+//    @Autowired
+//    private HotelAvailabilityClient hotelAvailabilityClient;
     
     @Autowired
     private HotelPricingClient hotelPricingClient;
@@ -74,6 +74,7 @@ public class HotelGatewayService {
             throw new RuntimeException(e);
         }
     }
+    
 //    @Cacheable
     private HystrixCommand<String> getHotelDetails(final String hotelId) {
         return new HystrixCommand<String>(
@@ -129,32 +130,32 @@ public class HotelGatewayService {
         };
     }
     
-    private HystrixCommand<String> getHotelAvailability(final String hotelId) {
-        return new HystrixCommand<String>(
-                HystrixCommand.Setter
-                        .withGroupKey(HystrixCommandGroupKey.Factory.asKey(AVAIL_GROUP))
-                        .andCommandKey(HystrixCommandKey.Factory.asKey("getAvailability"))
-                        .andThreadPoolPropertiesDefaults(
-                                HystrixThreadPoolProperties.Setter().withCoreSize(5).withMaxQueueSize(2)
-                        )
-                        .andCommandPropertiesDefaults(
-                                HystrixCommandProperties.Setter()
-                                        .withCircuitBreakerErrorThresholdPercentage(10)
-                                        .withExecutionIsolationThreadTimeoutInMilliseconds(TIMEOUT)
-                        )
-        ) {
-            @Override
-            protected String run() throws Exception {
-                Type type = new TypeToken<HashMap<String, String>>() {}.getType();
-                Map<String, String> map = new Gson().fromJson(hotelAvailabilityClient.getHotelAvailability(hotelId), type);
-                return map.get("price") + ", " + map.get("availability");
-            }
-            @Override
-            protected String getFallback() {
-                return "UNKNOWN";
-            }
-        };
-    }
+//    private HystrixCommand<String> getHotelAvailability(final String hotelId) {
+//        return new HystrixCommand<String>(
+//                HystrixCommand.Setter
+//                        .withGroupKey(HystrixCommandGroupKey.Factory.asKey(AVAIL_GROUP))
+//                        .andCommandKey(HystrixCommandKey.Factory.asKey("getAvailability"))
+//                        .andThreadPoolPropertiesDefaults(
+//                                HystrixThreadPoolProperties.Setter().withCoreSize(5).withMaxQueueSize(2)
+//                        )
+//                        .andCommandPropertiesDefaults(
+//                                HystrixCommandProperties.Setter()
+//                                        .withCircuitBreakerErrorThresholdPercentage(10)
+//                                        .withExecutionIsolationThreadTimeoutInMilliseconds(TIMEOUT)
+//                        )
+//        ) {
+//            @Override
+//            protected String run() throws Exception {
+//                Type type = new TypeToken<HashMap<String, String>>() {}.getType();
+//                Map<String, String> map = new Gson().fromJson(hotelAvailabilityClient.getHotelAvailability(hotelId), type);
+//                return map.get("price") + ", " + map.get("availability");
+//            }
+//            @Override
+//            protected String getFallback() {
+//                return "UNKNOWN";
+//            }
+//        };
+//    }
     
     private HystrixCommand<String> getHotelRatings(final String hotelId) {
         return new HystrixCommand<String>(

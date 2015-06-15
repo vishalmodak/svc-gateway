@@ -3,18 +3,18 @@ This represents a Service Gateway as well as registrar for other services. Runs 
 
 This applies relies on 3 services - HotelDetailsService ([svc-hoteldetails](https://stash.hyattdev.com/stash/users/1337135/repos/svc-hoteldetails/browse)) , HotelPricingService ([svc-pricing](https://stash.hyattdev.com/stash/users/1337135/repos/svc-pricing/browse)), HotelRatingService ([svc-rating](https://stash.hyattdev.com/stash/users/1337135/repos/svc-rating/browse))
 
-#To view hystrix metrics 
-Run the hystrix dashboard ([hystrix-dashboard](https://stash.hyattdev.com/stash/users/1337135/repos/hystrix-dashboard/browse))
-
-#To consume hystrix stream for processing
-Refer to [hystrix monitor](https://stash.hyattdev.com/stash/users/1337135/repos/hystrix-monitor/browse)
-
-#Other Links
+##Application Links
 | Component | Link |
 |-----------| -----|
 | Eureka Server | http://localhost:7979 |
 | Swagger UI | http://localhost:7979/sdoc.jsp (requires internet access) |
 | Hystrix Stream | http://localhost:7980/hystrix.stream | |
+
+##To view hystrix metrics 
+Run the hystrix dashboard ([hystrix-dashboard](https://stash.hyattdev.com/stash/users/1337135/repos/hystrix-dashboard/browse))
+
+##To consume hystrix stream for processing
+Refer to [hystrix monitor](https://stash.hyattdev.com/stash/users/1337135/repos/hystrix-monitor/browse)
 
 ##To generate traffic
 `seq 100000 | xargs -P 1 -n 1 -I ID curl http://localhost:7979/info/ID`
