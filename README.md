@@ -1,7 +1,10 @@
 #Hotel Gateway
-This represents a Service Gateway as well as registrar for other services. Runs on port 7979.
+This represents a Service Gateway as well as discovery for other services. Runs on port 7979.
 
-This applies relies on 3 services - HotelDetailsService ([svc-hoteldetails](https://stash.hyattdev.com/stash/users/1337135/repos/svc-hoteldetails/browse)) , HotelPricingService ([svc-pricing](https://stash.hyattdev.com/stash/users/1337135/repos/svc-pricing/browse)), HotelRatingService ([svc-rating](https://stash.hyattdev.com/stash/users/1337135/repos/svc-rating/browse))
+This applies relies on 3 services 
+- HotelDetailsService (svc-hoteldetails)
+- HotelPricingService (svc-pricing)
+- HotelRatingService (svc-rating)
 
 ##Application Links
 | Component | Link |
@@ -11,10 +14,10 @@ This applies relies on 3 services - HotelDetailsService ([svc-hoteldetails](http
 | Hystrix Stream | http://localhost:7980/hystrix.stream | |
 
 ##To view hystrix metrics 
-Run the hystrix dashboard ([hystrix-dashboard](https://stash.hyattdev.com/stash/users/1337135/repos/hystrix-dashboard/browse))
+Run the hystrix dashboard (hystrix-dashboard)
 
 ##To consume hystrix stream for processing
-Refer to [hystrix monitor](https://stash.hyattdev.com/stash/users/1337135/repos/hystrix-monitor/browse)
+Refer to (hystrix monitor)
 
 ##To generate traffic
 `seq 100000 | xargs -P 1 -n 1 -I ID curl http://localhost:7979/info/ID`

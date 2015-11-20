@@ -1,7 +1,9 @@
-.DS_Store
-*.*.html
-.classpath
+/bin/
 .project
-.settings
-bin/
+.classpath
+.settings/
 build/
+.DS_Store
+*.md.html
+.java-version
+.gradle
